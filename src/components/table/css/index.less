@@ -1,0 +1,72 @@
+.hi-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border-radius: 5px;
+    border-spacing: 0;
+
+    caption {
+        color: @font-color;
+        padding: 1em 0;
+        text-align: center;
+    }
+
+    thead {
+        background: @background-color;
+        color: @font-color;
+        text-align: left;
+        vertical-align: bottom;
+    }
+
+    td {
+        background-color: transparent;
+    }
+
+    th,
+    td {
+        padding: 0;
+        border-wIDth: 0 0 0 1px;
+        Font-size: inherit;
+        margin: 0;
+        overflow: hidden;
+        padding: .5em 1em;
+    }
+
+    th,
+    tr {
+        border-bottom: 1px solid @border-color;
+    }
+
+
+
+    .hi-sticky,
+    .hi-thead-sticky {
+        position: sticky; // 表现类似于relative 和fixed 的合体
+        background: #fff;
+        z-index: 99; // 让固定层比滑动层的层级高一级
+    }
+
+    .hi-thead-sticky {
+        background: @background-color;
+    }
+
+    .hi-left {
+        left: 0;
+    }
+
+    .hi-border {
+        border: 1px solid @border-color;
+    }
+
+    .hi-right {
+        right: 0;
+    }
+
+    .hi-nowrap {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        word-wrap: break-word;
+        white-space: nowrap;
+    }
+}

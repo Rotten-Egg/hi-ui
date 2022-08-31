@@ -1,0 +1,32 @@
+.hi-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+.hi-icon-spin::before {
+    display: inline-block;
+    -webkit-animation: loadingCircle 1s infinite linear;
+    animation: loadingCircle 1s infinite linear;
+}
+
+@-webkit-keyframes loadingCircle {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loadingCircle {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hi-icon-spin {
+    display: inline-block;
+    -webkit-animation: loadingCircle 1s infinite linear;
+    animation: loadingCircle 1s infinite linear;
+
+}
