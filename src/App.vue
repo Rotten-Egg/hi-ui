@@ -5,25 +5,25 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-17 16:16:28
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-08-31 18:35:41
+ * @LastEditTime: 2022-09-01 19:08:21
 -->
 <script setup>
-import { reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 
 const state = reactive({
   visible: false,
   dataSource: [
           {
             key: '1',
-            name: '胡彦斌',
+            name: '彭于晏',
             age: 32,
-            address: '西湖区湖底公园1号',
+            address: '哈哈哈哈哈',
           },
           {
             key: '2',
-            name: '胡彦祖',
+            name: '吴彦祖',
             age: 42,
-            address: '西湖区湖底公园1号',
+            address: 'giegie',
           },
   ],
   columns:[
@@ -42,15 +42,30 @@ const state = reactive({
       key: 'operation',
       fixed: 'right',
       width: 100,
+      align: 'center',
       slots: { customRender: 'age' },
     }
 ]
 })
+let checked = ref(false)
+let checkedList = ref(['banana'])
+let options = ref(['banana', 'apple', 'hami'])
 function fun (e){
   alert(e)
 }
-function onChange (e) {
+function onChange(e) {
   console.log(e)
+}
+let checkState = computed(() => {
+  const checkedState = checkedList.value.length
+  const optionState = options.value.length
+  if (checkedState < optionState && checkedState > 0) return 1
+  if (checkedState === optionState) return 2
+  return 0
+})
+function onCheckAllChange(e) {
+  console.log('e', e)
+  checkedList.value = e ? options.value : []
 }
 </script>
 
@@ -65,19 +80,30 @@ function onChange (e) {
   <hi-button type="danger" size="small" shape="round">nia</hi-button>
   <hi-button type="dashed" size="large" shape="circle">nia</hi-button>
   <hi-button type="link">nia</hi-button>
+  <hr>
   <hi-table
     :columns="state.columns"
     :data-source="state.dataSource"
     :rowCheckbox="true"
     @rowSelection="onChange"
   >
-    <template #age>
-      123<hi-button @click="fun" type="link">你好撒旦索朗多吉阿斯科利家的辣椒水👋</hi-button>
+    <template #age >
+      <div style="display: flex">
+        <hi-button @click="fun" type="link">查看</hi-button>
+        <hi-button @click="fun" type="link">编辑</hi-button>
+      </div>
+      
     </template>
   </hi-table>
-  <hi-checkbox :checkType="2">
-    asdasd
-  </hi-checkbox>
+  <hr>
+  <hi-checkbox v-model:checked="checked" :checkState="checkState" @onChange="onCheckAllChange">
+    你好， {{checkedList}}
+  </hi-checkbox><br/>
+  <hi-checkbox-group
+    v-model:value="checkedList"
+    :options="options"
+  ></hi-checkbox-group>
+  <hr>
   <hi-modal
     title="hellow"
     v-model:visible="state.visible"

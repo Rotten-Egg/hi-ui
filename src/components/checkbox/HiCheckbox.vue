@@ -4,51 +4,53 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-31 11:40:32
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-08-31 14:54:13
+ * @LastEditTime: 2022-09-01 19:10:18
 -->
 <template>
     <label class="hi-checkbox-wrapper">
         <span
             :class="[
                 'hi-checkbox',
-                checkType === 1 && 'hi-checkbox-indeterminate',
-                checkType === 2 && 'hi-checkbox-checked'
+                checked && 'hi-checkbox-checked',
+                checkState === 1 && 'hi-checkbox-indeterminate',
+                checked || checkState === 2 && 'hi-checkbox-checked'
             ]"
         >
             <input
-                @click="checkboxClick"
+                @change="change"
+                v-model="checked"
                 type="checkbox"
                 class="hi-checkbox-input"
-                :value="value"
             />
             <span class="hi-checkbox-inner"></span>
         </span>
-        <span>{{value}}
+        <span>
             <slot></slot>
         </span>
     </label>
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue'
 export default {
     name: 'HiCheckbox',
     props: {
-        checkType: {
+        checked: {
+            type: Boolean,
+            default: false
+        },
+        // 0 未选中 1 选中 2 全选
+        checkState: {
             type: Number,
             default: 0
-        },
-        value: {
-            type: [Object, Number, String],
         }
     },
-    setup (props) {
-        let { proxy } = getCurrentInstance()
-        function checkboxClick(e){
-            proxy.$emit('change', e)
+    setup (props, {emit}) {
+        function change(e){
+            emit('update:checked', e.target.checked)
+            emit('onChange', e.target.checked)
         }
         return {
-            checkboxClick
+            change
         }
     }
 }

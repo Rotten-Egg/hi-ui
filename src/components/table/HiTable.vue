@@ -16,8 +16,8 @@
                         <span
                             :class="[
                                 'hi-checkbox',
-                                checkType === 1 && 'hi-checkbox-indeterminate',
-                                checkType === 2 && 'hi-checkbox-checked'
+                                checkState === 1 && 'hi-checkbox-indeterminate',
+                                checkState === 2 && 'hi-checkbox-checked'
                             ]"
                         >
                             <input
@@ -116,7 +116,7 @@ export default {
         const hiCheckboxItem = ref(null)
         const hiCheckboxAll = ref(null)
         // 0 未选中 1 选中 2 全选
-        const checkType = ref(0)
+        const checkState = ref(0)
         const dataSourceCopy = ref(null)
 
         watch(() => props.rowCheckbox, (newVal) => {
@@ -137,7 +137,7 @@ export default {
         function checkAll (e) {
             let checked = e.target.checked
             hiCheckboxItem.value && hiCheckboxItem.value.forEach(item => {
-                checkType.value = checked ? 2 : 0
+                checkState.value = checked ? 2 : 0
                 item.checked = checked
             })
             dataSourceCopy.value.forEach(item => {
@@ -151,23 +151,23 @@ export default {
             proxy.$emit('rowSelection', dataSourceCopy.value.filter(i => i.isChecked))
             let notCheck = hiCheckboxItem.value.filter(i => !i.checked)
             if (!notCheck.length) {
-                checkType.value = 2
+                checkState.value = 2
                 hiCheckboxAll.value.checked = true
                 return
             }
             if (notCheck.length === hiCheckboxItem.value.length) {
-                checkType.value = 0
+                checkState.value = 0
                 hiCheckboxAll.value.checked = false
                 return
             }
-            checkType.value = 1
+            checkState.value = 1
         }
 
         return {
            tdFlex,
            checkAll,
            checked,
-           checkType,
+           checkState,
            hiCheckboxAll,
            hiCheckboxItem,
            dataSourceCopy

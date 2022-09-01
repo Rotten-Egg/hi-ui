@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-18 10:47:54
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-08-18 16:48:36
+ * @LastEditTime: 2022-09-01 16:26:55
 -->
 <template>
     <transition name="modal">
@@ -111,7 +111,6 @@ export default {
             if (!props.maskClosable) return
             proxy.$emit('cancel')
         }
-        console.log(slots)
         return {
             slots,
             cancel,
