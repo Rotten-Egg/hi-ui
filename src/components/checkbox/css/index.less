@@ -26,7 +26,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: rgba(0, 0, 0, 0.85);
+    color: @font-color;
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5715;
@@ -45,7 +45,7 @@
 .hi-checkbox-wrapper:hover .hi-checkbox-inner,
 .hi-checkbox:hover .hi-checkbox-inner,
 .hi-checkbox-input:focus+.hi-checkbox-inner {
-    border-color: #1890ff;
+    border-color: @primary-color;
 }
 
 .hi-checkbox-checked::after {
@@ -54,7 +54,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border: 1px solid #1890ff;
+    border: 1px solid @primary-color;
     border-radius: 2px;
     visibility: hidden;
     -webkit-animation: antCheckboxEffect 0.36s ease-in-out;
@@ -77,7 +77,7 @@
     width: 16px;
     height: 16px;
     background-color: #fff;
-    border: 1px solid #d9d9d9;
+    border: 1px solid @disabled-active-boder-color;
     border-radius: 2px;
     border-collapse: separate;
     transition: all 0.3s;
@@ -125,8 +125,8 @@
 }
 
 .hi-checkbox-checked .hi-checkbox-inner {
-    background-color: #1890ff;
-    border-color: #1890ff;
+    background-color: @primary-color;
+    border-color: @primary-color;
 }
 
 .hi-checkbox-disabled {
@@ -144,12 +144,12 @@
 }
 
 .hi-checkbox-disabled .hi-checkbox-inner {
-    background-color: #f5f5f5;
-    border-color: #d9d9d9 !important;
+    background-color: @disabled-active-background;
+    border-color: @disabled-active-boder-color  !important;
 }
 
 .hi-checkbox-disabled .hi-checkbox-inner::after {
-    border-color: #f5f5f5;
+    border-color: @disabled-active-background;
     border-collapse: separate;
     -webkit-animation-name: none;
     animation-name: none;
@@ -169,7 +169,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: rgba(0, 0, 0, 0.85);
+    color: @font-color;
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5715;
@@ -197,7 +197,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: rgba(0, 0, 0, 0.85);
+    color: @font-color;
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5715;
@@ -221,7 +221,7 @@
 
 .hi-checkbox-indeterminate .hi-checkbox-inner {
     background-color: #fff;
-    border-color: #d9d9d9;
+    border-color: @disabled-active-boder-color;
 }
 
 .hi-checkbox-indeterminate .hi-checkbox-inner::after {
@@ -229,7 +229,7 @@
     left: 50%;
     width: 8px;
     height: 8px;
-    background-color: #1890ff;
+    background-color: @primary-color;
     border: 0;
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;

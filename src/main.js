@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-17 16:16:28
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-01 15:45:33
+ * @LastEditTime: 2022-09-02 18:41:13
  */
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -19,6 +19,8 @@ import HiModal from './components/modal/HiModal.vue'
 import HiTable from './components/table/HiTable.vue'
 import HiCheckbox from './components/checkbox/HiCheckbox.vue'
 import HiCheckboxGroup from './components/checkbox/HiCheckboxGroup.vue'
+import HiRadio from './components/radio/HiRadio.vue'
+import HiRadioGroup from './components/radio/HiRadioGroup.vue'
 
 const components = [
     HiButton,
@@ -26,7 +28,9 @@ const components = [
     HiModal,
     HiTable,
     HiCheckbox,
-    HiCheckboxGroup
+    HiCheckboxGroup,
+    HiRadio,
+    HiRadioGroup
 ]
 components.forEach(item => {
     app.component(item.name, item)

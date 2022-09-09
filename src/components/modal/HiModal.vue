@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-18 10:47:54
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-01 16:26:55
+ * @LastEditTime: 2022-09-09 15:05:19
 -->
 <template>
     <transition name="modal">
@@ -122,5 +122,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import url('../css/public.less');
 @import url('./css/index.less');
 </style>

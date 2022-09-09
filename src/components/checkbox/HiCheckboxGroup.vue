@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-09-01 15:42:20
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-01 19:10:35
+ * @LastEditTime: 2022-09-09 15:01:09
 -->
 <template>
     <div class="hi-checkbox-group">
@@ -24,9 +24,11 @@
                 >
                 <span class="hi-checkbox-inner"></span>
             </span>
-            <span>
-                {{item.label}}
+            <span v-if="slots.label">
+                <slot name="label" :item="item.label">
+                </slot>
             </span>
+            <span v-else>{{item.label}}</span>
         </label>
     </div>
 </template>
@@ -49,16 +51,6 @@ export default {
     },
     setup (props, {emit}) {
         const slots = useSlots()
-        // let getOption = ref([])
-        // watch(() => props.options, (newVal) => {
-        //    getOption.value = props.options.map((option) => {
-        //         return {
-        //             label: option,
-        //             value: option,
-        //             isChecked: props.value.includes(option)
-        //         }
-        //     })
-        // }, {immediate: true})
         watch(() => props.value, (newVal) => {
             let flag = newVal.length === props.options.length
             if (!(flag || newVal.length === 0)) return
@@ -93,5 +85,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import url('../css/public.less');
 @import url('./css/index.less');
 </style>

@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-19 19:15:42
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-08-31 18:35:49
+ * @LastEditTime: 2022-09-02 16:44:18
 -->
 <template>
 <div style="width: 100%;overflow: scroll;">
@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import { ref, watch, getCurrentInstance } from 'vue'
+import { ref, watch } from 'vue'
 export default {
     name: 'HiTable',
     props: {
@@ -111,8 +111,7 @@ export default {
             default: false
         }
     },
-    setup (props) {
-        let { proxy } = getCurrentInstance()
+    setup (props, {emit}) {
         const hiCheckboxItem = ref(null)
         const hiCheckboxAll = ref(null)
         // 0 未选中 1 选中 2 全选
@@ -143,12 +142,12 @@ export default {
             dataSourceCopy.value.forEach(item => {
                 item.isChecked = checked
             })
-            proxy.$emit('rowSelection', dataSourceCopy.value.filter(i => i.isChecked))
+            emit('rowSelection', dataSourceCopy.value.filter(i => i.isChecked))
         }
         
         function checked (e, item) {
             item.isChecked = e.target.checked
-            proxy.$emit('rowSelection', dataSourceCopy.value.filter(i => i.isChecked))
+            emit('rowSelection', dataSourceCopy.value.filter(i => i.isChecked))
             let notCheck = hiCheckboxItem.value.filter(i => !i.checked)
             if (!notCheck.length) {
                 checkState.value = 2

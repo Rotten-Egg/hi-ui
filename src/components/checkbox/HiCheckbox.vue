@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-31 11:40:32
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-01 19:10:18
+ * @LastEditTime: 2022-09-09 15:02:27
 -->
 <template>
     <label class="hi-checkbox-wrapper">
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { watch } from 'vue'
 export default {
     name: 'HiCheckbox',
     props: {
@@ -45,7 +46,13 @@ export default {
         }
     },
     setup (props, {emit}) {
+        watch(() => props.checkState, (newVal) => {
+            if (newVal === 2) {
+                 emit('update:checked', true)
+            }
+        })
         function change(e){
+            console.log('p',props)
             emit('update:checked', e.target.checked)
             emit('onChange', e.target.checked)
         }
@@ -57,5 +64,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import url('../css/public.less');
 @import url('./css/index.less');
 </style>

@@ -1,14 +1,13 @@
 <!--
- * @Descrip
-  components: { HiButton },tion: 
+ * @Description: 
  * @version: 1.0
  * @Author: 美-王骁凯
  * @Date: 2022-08-17 16:16:28
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-01 19:08:21
+ * @LastEditTime: 2022-09-07 18:20:32
 -->
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 
 const state = reactive({
   visible: false,
@@ -48,8 +47,15 @@ const state = reactive({
 ]
 })
 let checked = ref(false)
+let radioChecked = ref(false)
+
 let checkedList = ref(['banana'])
 let options = ref(['banana', 'apple', 'hami'])
+const radioOptions = [
+  { label: 'Apple', value: 'Apple' },
+  { label: 'Pear', value: 'Pear' },
+  { label: 'Orange', value: 'Orange' },
+];
 function fun (e){
   alert(e)
 }
@@ -70,6 +76,7 @@ function onCheckAllChange(e) {
 </script>
 
 <template>
+  <div class="but">
   <hi-button disabled>nia</hi-button>
   <hi-button type="primary" ghost @click="state.visible = true">
     <template #icon>
@@ -80,6 +87,7 @@ function onCheckAllChange(e) {
   <hi-button type="danger" size="small" shape="round">nia</hi-button>
   <hi-button type="dashed" size="large" shape="circle">nia</hi-button>
   <hi-button type="link">nia</hi-button>
+  </div>
   <hr>
   <hi-table
     :columns="state.columns"
@@ -96,14 +104,26 @@ function onCheckAllChange(e) {
     </template>
   </hi-table>
   <hr>
-  <hi-checkbox v-model:checked="checked" :checkState="checkState" @onChange="onCheckAllChange">
+  <hi-checkbox
+    v-model:checked="checked"
+    :checkState="checkState"
+    @onChange="onCheckAllChange"
+  >
     你好， {{checkedList}}
   </hi-checkbox><br/>
   <hi-checkbox-group
     v-model:value="checkedList"
     :options="options"
-  ></hi-checkbox-group>
+  >
+    <template #label="{item}">
+      {{item}}
+    </template>
+  </hi-checkbox-group>
   <hr>
+  <hi-radio v-model:checked="radioChecked">
+    hello-{{radioChecked}}
+  </hi-radio>
+  <hi-radio-group :options="radioOptions"></hi-radio-group>
   <hi-modal
     title="hellow"
     v-model:visible="state.visible"
@@ -118,6 +138,10 @@ function onCheckAllChange(e) {
   </hi-modal>
 </template>
 
-<style scoped>
-
+<style lang="less" scoped>
+.but {
+  button {
+    margin-right: 15px;
+  }
+}
 </style>
