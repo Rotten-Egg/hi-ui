@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-17 16:16:28
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-07 18:20:32
+ * @LastEditTime: 2022-09-23 14:36:44
 -->
 <script setup>
 import { computed, reactive, ref, watch } from "vue";
@@ -47,10 +47,11 @@ const state = reactive({
 ]
 })
 let checked = ref(false)
-let radioChecked = ref(false)
+let radioChecked = ref(true)
 
 let checkedList = ref(['banana'])
 let options = ref(['banana', 'apple', 'hami'])
+let radioGroup = ref([])
 const radioOptions = [
   { label: 'Apple', value: 'Apple' },
   { label: 'Pear', value: 'Pear' },
@@ -67,6 +68,7 @@ let checkState = computed(() => {
   const optionState = options.value.length
   if (checkedState < optionState && checkedState > 0) return 1
   if (checkedState === optionState) return 2
+  checked.value = false
   return 0
 })
 function onCheckAllChange(e) {
@@ -120,10 +122,15 @@ function onCheckAllChange(e) {
     </template>
   </hi-checkbox-group>
   <hr>
-  <hi-radio v-model:checked="radioChecked">
-    hello-{{radioChecked}}
+  <hi-radio value="One" v-model:checked="radioChecked">
+    hello
   </hi-radio>
-  <hi-radio-group :options="radioOptions"></hi-radio-group>
+  <hi-radio value="Three" disabled v-model:checked="radioChecked">
+    hi
+  </hi-radio>
+  <br>
+  <hi-radio-group v-model:value="radioGroup" :options="radioOptions">
+x  </hi-radio-group>value:{{radioGroup}}
   <hi-modal
     title="hellow"
     v-model:visible="state.visible"

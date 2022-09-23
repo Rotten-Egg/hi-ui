@@ -4,18 +4,21 @@
  * @Author: 美-王骁凯
  * @Date: 2022-09-02 11:25:31
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-02 18:00:33
+ * @LastEditTime: 2022-09-23 14:35:03
 -->
 <template>
     <label class="hi-radio-wrapper">
         <span :class="[
             'hi-radio',
-            checked && 'hi-radio-checked'
+            (checked === value || checked) && 'hi-radio-checked',
+            disabled && 'hi-radio-disabled'
         ]"
         >
             <input
                 v-model="checked"
-                @change="change"
+                @change="onChange"
+                :value="value"
+                :disabled="disabled"
                 type="radio"
                 class="hi-radio-input"
             >
@@ -28,28 +31,28 @@
 </template>
 
 <script>
-import { computed, watch } from 'vue'
 export default {
     name: 'HiRadio',
     props: {
-        checked: {
+        checked: null,
+        disabled: {
             type: Boolean,
             default: false
         },
         value: {
-            type: [String, Number]
+            type: [String, Number],
+            default: ''
         }
     },
     setup (props, {emit}) {
-        function change(e) {
+        function onChange(e) {
             console.log(e.target.checked)
             
-            emit('update:checked', e.target.checked)
+            // emit('update:checked', e.target.checked)
             emit('change', e.target.checked)
         }
         return {
-            change,
-            // innerVal
+            onChange,
         }
     }
 }

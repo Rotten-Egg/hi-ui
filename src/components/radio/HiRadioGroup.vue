@@ -4,41 +4,53 @@
  * @Author: 美-王骁凯
  * @Date: 2022-09-02 18:39:53
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-09 15:08:54
+ * @LastEditTime: 2022-09-23 14:40:57
 -->
 <template>
-    <div class="ant-radio-group ant-radio-group-outline ant-radio-group-default">
+    <div class="hi-radio-group hi-radio-group-outline hi-radio-group-default">
         <label
-            class="ant-radio-wrapper ant-radio-wrapper-checked"
+            class="hi-radio-wrapper hi-radio-wrapper-checked"
             v-for="(item, index) in options"
             :key="index"
         >
-            <span class="ant-radio ant-radio-checked">
+            <span :class="['hi-radio', value.includes(item.value) && 'hi-radio-checked']">
                 <input
+                    v-model="value"
+                    :value="item.value"
+                    @change="onChange"
                     type="radio"
-                    class="ant-radio-input"
-                    value="Apple"
+                    class="hi-radio-input"
                 >
-                <span class="ant-radio-inner"></span>
+                <span class="hi-radio-inner"></span>
             </span>
-            <span>Apple</span>
+            <span>{{item.label || item}}</span>
+            <slot></slot>
         </label>
     </div>
 </template>
 
 <script>
+import {ref} from 'vue'
 export default {
     name: 'HiRadioGroup',
     props: {
+        value: {
+            type: Array,
+            default: []
+        },
         options: {
             type: Array,
             default: []
         }
     },
-    setup () {
-        
-
-        return {}
+    setup (props, {emit}) {
+        function onChange(e) {
+            emit('update:value', e.target.value)
+            emit('onChange', e.target.value)
+        }
+        return {
+            onChange
+        }
     }
 }
 </script>

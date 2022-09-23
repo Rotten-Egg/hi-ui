@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-31 11:40:32
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-09 15:02:27
+ * @LastEditTime: 2022-09-13 11:33:43
 -->
 <template>
     <label class="hi-checkbox-wrapper">
@@ -13,7 +13,7 @@
                 'hi-checkbox',
                 checked && 'hi-checkbox-checked',
                 checkState === 1 && 'hi-checkbox-indeterminate',
-                checked || checkState === 2 && 'hi-checkbox-checked'
+                checkState === 2 ? 'hi-checkbox-checked' : null
             ]"
         >
             <input
@@ -52,7 +52,6 @@ export default {
             }
         })
         function change(e){
-            console.log('p',props)
             emit('update:checked', e.target.checked)
             emit('onChange', e.target.checked)
         }
