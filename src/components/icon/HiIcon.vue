@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-17 18:17:29
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-08-18 10:24:57
+ * @LastEditTime: 2022-11-08 18:52:05
 -->
 <template>
      <svg v-if="type" :class="[spin && 'hi-icon-spin', 'hi-icon']" aria-hidden="true">

@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-17 16:16:28
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-23 14:36:44
+ * @LastEditTime: 2022-11-14 14:38:49
 -->
 <script setup>
 import { computed, reactive, ref, watch } from "vue";
@@ -52,6 +52,8 @@ let radioChecked = ref(true)
 let checkedList = ref(['banana'])
 let options = ref(['banana', 'apple', 'hami'])
 let radioGroup = ref([])
+let switchVisible = ref(true)
+
 const radioOptions = [
   { label: 'Apple', value: 'Apple' },
   { label: 'Pear', value: 'Pear' },
@@ -130,7 +132,9 @@ function onCheckAllChange(e) {
   </hi-radio>
   <br>
   <hi-radio-group v-model:value="radioGroup" :options="radioOptions">
-x  </hi-radio-group>value:{{radioGroup}}
+  </hi-radio-group>value:{{radioGroup}}
+  <hr>
+  <hi-switch v-model:checked="switchVisible"></hi-switch> checked: {{switchVisible}}
   <hi-modal
     title="hellow"
     v-model:visible="state.visible"
