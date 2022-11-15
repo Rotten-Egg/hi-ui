@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-17 16:16:28
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-11-14 14:38:49
+ * @LastEditTime: 2022-11-15 19:35:41
 -->
 <script setup>
 import { computed, reactive, ref, watch } from "vue";
@@ -134,7 +134,17 @@ function onCheckAllChange(e) {
   <hi-radio-group v-model:value="radioGroup" :options="radioOptions">
   </hi-radio-group>value:{{radioGroup}}
   <hr>
-  <hi-switch v-model:checked="switchVisible"></hi-switch> checked: {{switchVisible}}
+  <hi-switch v-model:checked="switchVisible" span/> checked: {{switchVisible}}
+  <hr>
+  <hi-spin size='large' tip="loading" spinning>
+    <template #indicator>
+     <hi-icon
+          spin
+          type="icon-jiazai"
+      ></hi-icon>
+    </template>
+    <div style="height: 200px;">balabalabala……</div>
+  </hi-spin>
   <hi-modal
     title="hellow"
     v-model:visible="state.visible"

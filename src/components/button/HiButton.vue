@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-17 16:23:17
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-09 14:06:51
+ * @LastEditTime: 2022-11-14 18:36:12
 -->
 <template>
     <button
@@ -89,6 +89,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url('../css/public.less');
 @import url('./css/index.less');
 </style>

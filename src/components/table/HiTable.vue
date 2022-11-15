@@ -4,7 +4,7 @@
  * @Author: 美-王骁凯
  * @Date: 2022-08-19 19:15:42
  * @LastEditors: 美-王骁凯
- * @LastEditTime: 2022-09-02 16:44:18
+ * @LastEditTime: 2022-11-14 18:36:41
 -->
 <template>
 <div style="width: 100%;overflow: scroll;">
@@ -176,7 +176,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url('../css/public.less');
 @import url('./css/index.less');
 @import url('../checkbox/css/index.less');
 </style>
